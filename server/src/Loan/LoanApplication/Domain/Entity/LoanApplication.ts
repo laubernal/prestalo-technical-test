@@ -1,16 +1,18 @@
 import {Name} from "@shared/Domain/ValueObject/Name";
 import {EmailVo} from "@shared/Domain/ValueObject/EmailVo";
-import {NumberVo} from "@shared/Domain/ValueObject/NumberVo";
 import {Id} from "@shared/Domain/ValueObject/Id";
+import {AmountRequested} from "@shared/Domain/ValueObject/AmountRequested";
+import {TermInMonths} from "@shared/Domain/ValueObject/TermInMonths";
+import {MonthlyIncome} from "@shared/Domain/ValueObject/MonthlyIncome";
 
 export class LoanApplication {
     constructor(
         private _id: Id,
         private _name: Name,
         private _email: EmailVo,
-        private _amountRequested: NumberVo,
-        private _termInMonths: NumberVo,
-        private _monthlyIncome: NumberVo,
+        private _amountRequested: AmountRequested,
+        private _termInMonths: TermInMonths,
+        private _monthlyIncome: MonthlyIncome,
         private _createdAt?: Date,
         private _updatedAt?: Date
     ) {}
@@ -27,15 +29,15 @@ export class LoanApplication {
         return this._email;
     }
 
-    public amountRequested(): NumberVo {
+    public amountRequested(): AmountRequested {
         return this._amountRequested;
     }
 
-    public termInMonths(): NumberVo {
+    public termInMonths(): TermInMonths {
         return this._termInMonths;
     }
 
-    public monthlyIncome(): NumberVo {
+    public monthlyIncome(): MonthlyIncome {
         return this._monthlyIncome;
     }
 
