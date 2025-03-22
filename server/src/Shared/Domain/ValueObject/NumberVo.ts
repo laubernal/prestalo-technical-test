@@ -6,15 +6,11 @@ export class NumberVo {
     }
 
     protected validate(): boolean {
-        try {
-            if (typeof this._value === 'number') {
-                return true;
-            }
-
-            throw new NumberFormatError();
-        } catch (error: any) {
-            throw new NumberFormatError();
+        if (typeof this._value === 'number') {
+            return true;
         }
+
+        throw new NumberFormatError();
     }
 
     get value(): number {

@@ -6,20 +6,12 @@ export class StringVo {
     }
 
     protected validate(): boolean {
-        try {
-            if (typeof this._value === 'string') {
-                this._value = this._value.trim();
-                return true;
-            }
-
-            if (typeof this._value === 'undefined') {
-                return true;
-            }
-
-            throw new StringFormatError();
-        } catch (error: any) {
-            throw new StringFormatError();
+        if (typeof this._value === 'string') {
+            this._value = this._value.trim();
+            return true;
         }
+
+        throw new StringFormatError();
     }
 
     get value(): string {
