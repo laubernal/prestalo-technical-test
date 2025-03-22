@@ -5,7 +5,7 @@ import {InjectModel} from "@nestjs/mongoose";
 import {
     MongoLoanApplicationModel
 } from "@loan/LoanApplication/Infrastructure/Persistance/Model/MongoLoanApplicationModel";
-import {Model} from "mongoose";
+import {Error, Model, Promise} from "mongoose";
 import {LoanApplicationMapper} from "@loan/LoanApplication/Infrastructure/Persistance/Mapper/LoanApplicationMapper";
 
 @Injectable()
@@ -22,6 +22,29 @@ export class MongoLoanApplicationRepository implements ILoanApplicationRepositor
             const loanApplication = this.mapper.toModel(entity);
 
             await this.mongoLoanApplicationModel.create(loanApplication);
+        } catch (error: any) {
+            throw new Error(`Mongoose Loan Application Repository Error - ${error}`);
+        }
+    }
+
+    public async find(): Promise<LoanApplication[]> {
+        try {
+
+            const result = await this.mongoLoanApplicationModel
+                .find()
+                .sort({created_at: 'desc'});
+
+            if (!result.length) {
+                return [];
+            }
+
+            const loanApplications: LoanApplication[] = [];
+
+            for (const event of result) {
+                loanApplications.push(this.mapper.toDomain(event));
+            }
+
+            return loanApplications;
         } catch (error: any) {
             throw new Error(`Mongoose Loan Application Repository Error - ${error}`);
         }
