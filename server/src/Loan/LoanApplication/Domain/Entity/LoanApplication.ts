@@ -1,35 +1,40 @@
+import {Name} from "@shared/Domain/ValueObject/Name";
+import {EmailVo} from "@shared/Domain/ValueObject/EmailVo";
+import {NumberVo} from "@shared/Domain/ValueObject/NumberVo";
+
 export class LoanApplication {
     constructor(
-       private _id: string,
-       private _name: string,
-       private _email: string,
-       private _amountRequested: number,
-       private _termInMonths: number,
-       private _monthlyIncome: number,
-       private _createdAt?: Date,
-       private _updatedAt?: Date) {}
+        private _id: string,
+        private _name: Name,
+        private _email: EmailVo,
+        private _amountRequested: NumberVo,
+        private _termInMonths: NumberVo,
+        private _monthlyIncome: NumberVo,
+        private _createdAt?: Date,
+        private _updatedAt?: Date
+    ) {}
 
     public id(): string {
         return this._id;
     }
 
-    public name(): string {
+    public name(): Name {
         return this._name;
     }
 
-    public email(): string {
+    public email(): EmailVo {
         return this._email;
     }
 
-    public amountRequested(): number {
+    public amountRequested(): NumberVo {
         return this._amountRequested;
     }
 
-    public termInMonths(): number {
+    public termInMonths(): NumberVo {
         return this._termInMonths;
     }
 
-    public monthlyIncome(): number {
+    public monthlyIncome(): NumberVo {
         return this._monthlyIncome;
     }
 
