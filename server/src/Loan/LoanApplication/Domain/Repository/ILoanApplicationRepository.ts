@@ -3,5 +3,4 @@ import {LoanApplication} from "@loan/LoanApplication/Domain/Entity/LoanApplicati
 
 
 export interface ILoanApplicationRepository extends IRepository<LoanApplication> {
-
 }

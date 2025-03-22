@@ -29,7 +29,6 @@ export class MongoLoanApplicationRepository implements ILoanApplicationRepositor
 
     public async find(): Promise<LoanApplication[]> {
         try {
-
             const result = await this.mongoLoanApplicationModel
                 .find()
                 .sort({created_at: 'desc'});
