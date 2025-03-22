@@ -16,10 +16,22 @@ import {
     MongoLoanApplicationModel, MongoLoanApplicationSchema
 } from "@loan/LoanApplication/Infrastructure/Persistance/Model/MongoLoanApplicationModel";
 import {LoanApplicationMapper} from "@loan/LoanApplication/Infrastructure/Persistance/Mapper/LoanApplicationMapper";
+import {
+    GetLoanApplicationsController
+} from "@loan/LoanApplication/Infrastructure/Controller/GetLoanApplications/GetLoanApplicationsController";
+import {
+    GetLoanApplicationsQueryHandler
+} from "@loan/LoanApplication/Application/GetLoanApplications/GetLoanApplicationsQueryHandler";
 
-const Controllers = [CreateLoanApplicationController];
+const Controllers = [
+    CreateLoanApplicationController,
+    GetLoanApplicationsController
+];
 
-const Handlers = [CreateLoanApplicationCommandHandler]
+const Handlers = [
+    CreateLoanApplicationCommandHandler,
+    GetLoanApplicationsQueryHandler
+]
 
 const Repositories = [
     {
