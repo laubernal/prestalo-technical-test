@@ -15,6 +15,7 @@ import {MongooseModule} from "@nestjs/mongoose";
 import {
     MongoLoanApplicationModel, MongoLoanApplicationSchema
 } from "@loan/LoanApplication/Infrastructure/Persistance/Model/MongoLoanApplicationModel";
+import {LoanApplicationMapper} from "@loan/LoanApplication/Infrastructure/Persistance/Mapper/LoanApplicationMapper";
 
 const Controllers = [CreateLoanApplicationController];
 
@@ -26,6 +27,8 @@ const Repositories = [
         useClass: MongoLoanApplicationRepository,
     }
 ]
+
+const Mappers = [LoanApplicationMapper]
 
 const MongooseModelsDefinition = [
     {name: MongoLoanApplicationModel.name, schema: MongoLoanApplicationSchema}
@@ -39,7 +42,7 @@ const MongooseModelsDefinition = [
         MongooseModule.forFeature([...MongooseModelsDefinition])
     ],
     controllers: [...Controllers],
-    providers: [...Handlers, ...Repositories],
+    providers: [...Handlers, ...Repositories, ...Mappers],
 })
 export class AppModule {
 }
