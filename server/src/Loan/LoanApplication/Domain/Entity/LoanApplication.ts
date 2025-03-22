@@ -1,10 +1,11 @@
 import {Name} from "@shared/Domain/ValueObject/Name";
 import {EmailVo} from "@shared/Domain/ValueObject/EmailVo";
 import {NumberVo} from "@shared/Domain/ValueObject/NumberVo";
+import {Id} from "@shared/Domain/ValueObject/Id";
 
 export class LoanApplication {
     constructor(
-        private _id: string,
+        private _id: Id,
         private _name: Name,
         private _email: EmailVo,
         private _amountRequested: NumberVo,
@@ -14,7 +15,7 @@ export class LoanApplication {
         private _updatedAt?: Date
     ) {}
 
-    public id(): string {
+    public id(): Id {
         return this._id;
     }
 
