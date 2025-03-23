@@ -1,18 +1,31 @@
-import {Center, Container, Space, Title} from "@mantine/core";
+'use client'
+
+import {Box, Button, Center, Container, Space, Title} from "@mantine/core";
 import {LoanApplicationForm} from "@/components/loan-application-form";
+import {redirect} from "next/navigation";
 
 export default function Home() {
-  return (
-      <Container size="xl">
-          <Space h="xl"/>
+    const redirectToLoanApplications = () => {
+        redirect("/loan-applications");
+    };
 
-          <Center>
-              <Title order={3}>Nueva solicitud de préstamo</Title>
-          </Center>
+    return (
+        <Container size="md">
+            <Space h="xl"/>
 
-          <Space h="lg"/>
+            <Center>
+                <Title order={3}>Nueva solicitud de préstamo</Title>
+            </Center>
 
-          <LoanApplicationForm />
-      </Container>
-  );
+            <Box style={{display: "flex", justifyContent: "flex-end", marginTop: 25}}>
+                <Button variant="outline" onClick={redirectToLoanApplications}>
+                    Ver solicitudes anteriores
+                </Button>
+            </Box>
+
+            <Space h="lg"/>
+
+            <LoanApplicationForm/>
+        </Container>
+    );
 }

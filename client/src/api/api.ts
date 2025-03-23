@@ -5,7 +5,7 @@ import {ApiResponse} from "@/types/apiResponse";
 
 const API_URL = "http://localhost:3000/api";
 
-export const fetchLoanApplications = async (): Promise<LoanApplicationResponse> => {
+export const fetchLoanApplications = async (): Promise<LoanApplicationResponse[]> => {
     try {
         const response: Response = await fetch(`${API_URL}/loans`, {method: 'GET'})
 
