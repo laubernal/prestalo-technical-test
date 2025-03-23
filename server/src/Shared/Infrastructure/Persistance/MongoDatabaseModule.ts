@@ -1,5 +1,5 @@
-import { Module } from '@nestjs/common/decorators';
-import { MongooseModule } from '@nestjs/mongoose';
+import {Module} from '@nestjs/common/decorators';
+import {MongooseModule} from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 import {ConfigService} from "@nestjs/config";
 
@@ -7,6 +7,7 @@ import {ConfigService} from "@nestjs/config";
     imports: [
         MongooseModule.forRootAsync({
             useFactory: async (config: ConfigService): Promise<{ uri: string }> => {
+                console.log(config.get<string>('MONGO_URI'))
                 mongoose.set('strictQuery', true);
                 return {
                     uri: `${config.get<string>('MONGO_URI')}`,
@@ -16,4 +17,5 @@ import {ConfigService} from "@nestjs/config";
         }),
     ],
 })
-export class MongoDatabaseModule {}
+export class MongoDatabaseModule {
+}

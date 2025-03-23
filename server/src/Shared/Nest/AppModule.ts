@@ -22,6 +22,8 @@ import {
 import {
     GetLoanApplicationsQueryHandler
 } from "@loan/LoanApplication/Application/GetLoanApplications/GetLoanApplicationsQueryHandler";
+import {ServeStaticModule} from "@nestjs/serve-static";
+import {join} from 'path';
 
 const Controllers = [
     CreateLoanApplicationController,
@@ -50,6 +52,10 @@ const MongooseModelsDefinition = [
     imports: [
         CqrsModule,
         ConfigModule.forRoot({isGlobal: true}),
+        ServeStaticModule.forRoot({
+            rootPath: join(__dirname, '../../../', 'client'),
+            exclude: ['/api/(.*)'],
+        }),
         MongoDatabaseModule,
         MongooseModule.forFeature([...MongooseModelsDefinition])
     ],
