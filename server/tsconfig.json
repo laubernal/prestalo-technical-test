@@ -20,7 +20,8 @@
     "paths": {
       "@src/*": ["src/*"],
       "@loan/*": ["src/Loan/*"],
-      "@shared/*": ["src/Shared/*"]
+      "@shared/*": ["src/Shared/*"],
+      "@test/*": ["test/*"]
     }
   }
 }
