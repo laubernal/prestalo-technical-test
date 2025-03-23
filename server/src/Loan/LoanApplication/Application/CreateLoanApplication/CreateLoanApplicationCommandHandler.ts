@@ -62,7 +62,7 @@ export class CreateLoanApplicationCommandHandler implements ICommandHandler<Crea
                 monthsPeriod: 24,
                 interestTae: 3.5,
                 monthlyCost: 1100,
-                offerMockUrl: '',
+                offerMockUrl: 'https://prestalo.com/',
             },
             {
                 id: 'b29c55c0-17de-4f0a-9179-f7c9c063c754',
@@ -71,7 +71,7 @@ export class CreateLoanApplicationCommandHandler implements ICommandHandler<Crea
                 monthsPeriod: 36,
                 interestTae: 4.2,
                 monthlyCost: 650,
-                offerMockUrl: '',
+                offerMockUrl: 'https://prestalo.com/',
             },
             {
                 id: '64132124-4dfd-4569-a79f-86e4f6ab4978',
@@ -80,7 +80,7 @@ export class CreateLoanApplicationCommandHandler implements ICommandHandler<Crea
                 monthsPeriod: 12,
                 interestTae: 5.0,
                 monthlyCost: 2700,
-                offerMockUrl: '',
+                offerMockUrl: 'https://prestalo.com/',
             }
         ]
     }
