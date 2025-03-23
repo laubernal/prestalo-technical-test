@@ -18,6 +18,7 @@ WORKDIR /app
 COPY --from=backend /app/ ./server
 COPY --from=backend /app/.env ./server/dist
 COPY --from=client /app/.next ./server/client/.next
+COPY --from=client /app/out ./server/client/out
 COPY --from=client /app/public ./server/client/public
 COPY --from=client /app/.env ./server/client/.env
 
