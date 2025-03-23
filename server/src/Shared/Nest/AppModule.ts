@@ -53,7 +53,7 @@ const MongooseModelsDefinition = [
         CqrsModule,
         ConfigModule.forRoot({isGlobal: true}),
         ServeStaticModule.forRoot({
-            rootPath: join(__dirname, '../../../', 'client'),
+            rootPath: join(__dirname, '../../../', 'client/out'),
             exclude: ['/api/(.*)'],
         }),
         MongoDatabaseModule,

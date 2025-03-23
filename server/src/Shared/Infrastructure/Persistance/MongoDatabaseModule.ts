@@ -7,7 +7,6 @@ import {ConfigService} from "@nestjs/config";
     imports: [
         MongooseModule.forRootAsync({
             useFactory: async (config: ConfigService): Promise<{ uri: string }> => {
-                console.log(config.get<string>('MONGO_URI'))
                 mongoose.set('strictQuery', true);
                 return {
                     uri: `${config.get<string>('MONGO_URI')}`,
