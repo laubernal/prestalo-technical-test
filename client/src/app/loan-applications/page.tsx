@@ -1,3 +1,5 @@
+'use client'
+
 import {fetchLoanApplications} from "@/api/api";
 import {
     Container,
@@ -16,8 +18,17 @@ import {LoanApplicationResponse} from "@/types/loanApplicationResponse";
 import React from "react";
 import Link from "next/link";
 
-export default async function LoanApplicationsTable() {
-    const loanApplications = await fetchLoanApplications();
+
+export default function LoanApplicationsTable() {
+    const [loanApplications, setLoanApplications] = React.useState<LoanApplicationResponse[]>([]);
+
+    React.useEffect(() => {
+        (async () => {
+            const response = await fetchLoanApplications();
+
+            setLoanApplications(response);
+        })();
+    }, [])
 
     return (
         <Container size="xl">
