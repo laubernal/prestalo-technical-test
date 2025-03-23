@@ -1,8 +1,17 @@
 version: '3'
 services:
+  server:
+    container_name: prestalo-server
+    build:
+       context: .
+       dockerfile: ./Dockerfile
+    ports:
+      - '5000:5000'
+    env_file:
+      - ./server/.env
   mongodb:
     image: mongo
-    container_name: prestalo-technical-test
+    container_name: prestalo-mongo-db
     ports:
       - '27017:27017'
     volumes:
