@@ -1,12 +1,13 @@
 'use client'
 
-import {Button, Flex, NumberInput, Space, TextInput} from "@mantine/core";
+import {Button, Container, Flex, NumberInput, Space, TextInput} from "@mantine/core";
 import React from "react";
 import {LoanApplication} from "@/types/loanApplication";
 import {useForm} from "@mantine/form";
 import {v4 as uuidv4} from 'uuid';
 import {createLoanApplication} from "@/api/api";
 import {Offer} from "@/types/offer";
+import {OfferCard} from "@/components/offer-card";
 
 export const LoanApplicationForm = () => {
     const form = useForm<Partial<LoanApplication>>({
@@ -39,74 +40,72 @@ export const LoanApplicationForm = () => {
 
     return (
         <div>
-            <form onSubmit={form.onSubmit(async (values: any) => {
-                await handleSubmit(values);
-            })}>
-                <TextInput
-                    label="Nombre"
-                    placeholder="Nombre"
-                    {...form.getInputProps('name')}
-                />
+            {offers && offers.length ?
+                <Container size={'md'}>
+                    <Flex direction="row">
+                        {offers.map((offer: Offer) => {
+                            return (
+                                <OfferCard offer={offer}/>
+                            )
+                        })}
+                    </Flex>
+                </Container>
+                :
+                <Container size={'sm'}>
+                    <form onSubmit={form.onSubmit(async (values: any) => {
+                        await handleSubmit(values);
+                    })}>
+                        <TextInput
+                            label="Nombre"
+                            placeholder="Nombre"
+                            {...form.getInputProps('name')}
+                        />
 
-                <Space h="sm"/>
+                        <Space h="sm"/>
 
-                <TextInput
-                    label="Email"
-                    placeholder="Email"
-                    {...form.getInputProps('email')}
-                />
+                        <TextInput
+                            label="Email"
+                            placeholder="Email"
+                            {...form.getInputProps('email')}
+                        />
 
-                <Space h="sm"/>
+                        <Space h="sm"/>
 
-                <NumberInput
-                    label="Monto a solicitar"
-                    min={1}
-                    allowNegative={false}
-                    {...form.getInputProps('amountRequested')}
-                />
+                        <NumberInput
+                            label="Monto a solicitar"
+                            min={1}
+                            allowNegative={false}
+                            {...form.getInputProps('amountRequested')}
+                        />
 
-                <Space h="sm"/>
+                        <Space h="sm"/>
 
-                <NumberInput
-                    label="Plazo"
-                    min={1}
-                    allowNegative={false}
-                    {...form.getInputProps('termInMonths')}
-                />
+                        <NumberInput
+                            label="Plazo"
+                            min={1}
+                            allowNegative={false}
+                            {...form.getInputProps('termInMonths')}
+                        />
 
-                <Space h="sm"/>
+                        <Space h="sm"/>
 
-                <NumberInput
-                    label="Ingresos mensuales"
-                    min={1}
-                    allowNegative={false}
-                    {...form.getInputProps('monthlyIncome')}
-                />
+                        <NumberInput
+                            label="Ingresos mensuales"
+                            min={1}
+                            allowNegative={false}
+                            {...form.getInputProps('monthlyIncome')}
+                        />
 
-                <Space h="lg"/>
+                        <Space h="lg"/>
 
-                <Flex justify="center">
-                    <Button variant="filled" fullWidth type="submit">Solicitar</Button>
-                </Flex>
+                        <Flex justify="center">
+                            <Button variant="filled" fullWidth type="submit">Solicitar</Button>
+                        </Flex>
 
-            </form>
-
-            <div>
-                {offers && offers.length ? offers.map((offer: Offer) => {
-                        return (
-                            <div key={offer.id}>
-                                <p>{offer.bankName}</p>
-                                <p>{offer.approvedAmount}€</p>
-                                <p>{offer.monthsPeriod} meses</p>
-                                <p>{offer.interestTae}%</p>
-                                <p>{offer.monthlyCost}€</p>
-                                <p>{offer.offerMockUrl}</p>
-                            </div>
-                        )
-                    })
-                    :
-                    <></>}
-            </div>
+                    </form>
+                </Container>
+            }
         </div>
+
     )
 }
