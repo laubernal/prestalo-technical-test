@@ -41,7 +41,7 @@ export const LoanApplicationForm = () => {
     return (
         <div>
             {offers && offers.length ?
-                <Container size={'md'}>
+                <Container size={'md'} style={{marginTop: 30}}>
                     <Flex direction="row">
                         {offers.map((offer: Offer) => {
                             return (
@@ -51,7 +51,7 @@ export const LoanApplicationForm = () => {
                     </Flex>
                 </Container>
                 :
-                <Container size={'sm'}>
+                <Container size={'md'}>
                     <form onSubmit={form.onSubmit(async (values: any) => {
                         await handleSubmit(values);
                     })}>
