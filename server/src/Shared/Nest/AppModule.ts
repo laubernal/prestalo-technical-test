@@ -24,6 +24,7 @@ import {
 } from "@loan/LoanApplication/Application/GetLoanApplications/GetLoanApplicationsQueryHandler";
 import {ServeStaticModule} from "@nestjs/serve-static";
 import {join} from 'path';
+import {RabbitMqModule} from "@shared/Infrastructure/Persistance/RabbitMQModule";
 
 const Controllers = [
     CreateLoanApplicationController,
@@ -57,7 +58,8 @@ const MongooseModelsDefinition = [
             exclude: ['/api/(.*)'],
         }),
         MongoDatabaseModule,
-        MongooseModule.forFeature([...MongooseModelsDefinition])
+        MongooseModule.forFeature([...MongooseModelsDefinition]),
+        RabbitMqModule
     ],
     controllers: [...Controllers],
     providers: [...Handlers, ...Repositories, ...Mappers],
