@@ -19,5 +19,18 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: password
+  rabbitmq:
+      image: rabbitmq:3-management
+      container_name: prestalo-rabbitmq
+      ports:
+        - '5672:5672'
+        - '15672:15672'
+      hostname: 'prestalo-rabbit-mq'
+      volumes:
+        - rabbitmq_data:/var/lib/rabbitmq
+      environment:
+        RABBITMQ_DEFAULT_USER: 'user'
+        RABBITMQ_DEFAULT_PASS: 'password'
 volumes:
   mongodb_data:
+  rabbitmq_data:
